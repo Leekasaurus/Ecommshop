@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import {login, addUser} from './api'
 
 const Login = () => {
     const [user, setUser] = useState({username, password})
@@ -18,10 +18,10 @@ const handleSubmit = async (e) => {
     setError('');
     try {
         if (id === 'register') {
-            await addNewUser(user);
+            await addUser(user);
             navigate('/login');
         }else {
-            await loginUser(user);
+            await login(user);
             navigate('/')
         }
     } catch (error) {
@@ -33,11 +33,10 @@ return(
     <div>
         <h1></h1>
 
-        <form>
-            <
-            <input></input>
-            <input></input>
-            <button></button>
+        <form onSubmit={handleSubmit}>
+        <input type="text" name="username" value="user.username" onChange={handleChange}></input>
+            <input type="password" name="password" value="user.password" onChange={handleChange}></input>
+            <button type="submit">Login</button>
         </form>
     </div>
 )
