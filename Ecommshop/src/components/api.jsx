@@ -3,7 +3,7 @@ const API_URL = `https://fakestoreapi.com/`;
 // fetch single product
 export const getProduct = async (id) => {
   try {
-    const response = await fetch(`${API_URL}products`)
+    const response = await fetch(`${API_URL}products/${id}`)
     const data = await response.json();
     return data;
   }
@@ -39,7 +39,7 @@ export const getSortProduct = async (id) => {
 
 export const getProduct = async (id) => {
   try {
-    const response = await fetch(`${API_URL}products`)
+    const response = await fetch(`${API_URL}products/${id}`)
     const data = await response.json();
     return data;
   }
@@ -52,7 +52,7 @@ export const getProduct = async (id) => {
 
 export const getAllCategories = async (id) => {
   try {
-    const response = await fetch(`${API_URL}products`)
+    const response = await fetch(`${API_URL}products/caetgories`)
     const data = await response.json();
     return data;
   }
@@ -64,7 +64,7 @@ export const getAllCategories = async (id) => {
 //specific category
 export const getProductByCategory = async (id) => {
   try {
-    const response = await fetch(`${API_URL}products`)
+    const response = await fetch(`${API_URL}products/category/${category}`)
     const data = await response.json();
     return data;
   }
