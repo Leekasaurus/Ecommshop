@@ -74,7 +74,7 @@ export const getProductByCategory = async (id) => {
 }
 
 
-// method of fetch for  a new product
+// method of fetch for a new product
 
 export const addNewProduct = async (product) => {
   try {
@@ -137,3 +137,105 @@ export const updateProduct = async (product) => {
   }
 }
 
+// methods for user
+
+export const addUser = async (user) => {
+  try{
+    const response = await fetch(`${API_URL}users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(
+              {
+                name: user.name,
+                name:{
+                 firstname: user.firstname,
+                  lastname: user.lastname
+                },
+                email: user.emal,
+                password: user.password,
+                address:{
+                  street: user.street,
+                  city: user.city,
+                  zipcode: user.zipcode,
+                  geolocation:{
+                    lat: user.lat,
+                    long: user.long
+                  }
+                },
+                phone: user.phone,
+    })
+  });
+  const data = response.json();
+  return data
+}
+catch(error)
+{
+  console.log(error);
+}
+};
+
+export const updateUser = async (user) => {
+  try{
+    const response = await fetch(`${API_URL}users`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(
+              {
+                name: user.name,
+                name:{
+                 firstname: user.firstname,
+                  lastname: user.lastname
+                },
+                email: user.emal,
+                password: user.password,
+                address:{
+                  street: user.street,
+                  city: user.city,
+                  zipcode: user.zipcode,
+                  geolocation:{
+                    lat: user.lat,
+                    long: user.long
+                  }
+                },
+                phone: user.phone,
+    })
+  });
+  const data = response.json();
+  return data
+}
+catch(error)
+{
+  console.log(error);
+}
+};
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}users/${id}`, {
+      method: DELETE
+    });
+    const data = await response.json();
+    return data;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+
+export const login = async (user) => {
+  const { username, password } = user;
+  try {
+    const response = await fetch(`${API_URL}/auth/login`,{
+      method:'POST',
+      headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username,
+            password
+          }),
+    });
+  } 
+  catch (error) {
+    console.log(error)
+  } 
+}
